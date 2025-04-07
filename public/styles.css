@@ -1,0 +1,104 @@
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transition: transform 0.1s ease;
+  z-index: 9999;
+}
+
+.cursor-follower {
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+  z-index: 9998;
+}
+
+.search-result {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-result:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.floating-icons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.cs-icon {
+  position: absolute;
+  opacity: 0.2;
+  animation: float 20s infinite linear;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+.cs-icon:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; }
+.cs-icon:nth-child(2) { top: 15%; left: 85%; animation-delay: -4s; }
+.cs-icon:nth-child(3) { top: 35%; left: 15%; animation-delay: -8s; }
+.cs-icon:nth-child(4) { top: 65%; left: 75%; animation-delay: -12s; }
+.cs-icon:nth-child(5) { top: 85%; left: 25%; animation-delay: -16s; }
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(100px, 100px) rotate(90deg);
+  }
+  50% {
+    transform: translate(0, 200px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-100px, 100px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+.search-container {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.search-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: linear-gradient(45deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.search-button i {
+  margin-right: 0.5rem;
+} 

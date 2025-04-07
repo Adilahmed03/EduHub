@@ -107,12 +107,17 @@
     <div class="min-h-screen flex items-center justify-center bg-zinc-100 dark:bg-zinc-900">
   <div class="bg-primary p-8 rounded-lg shadow-lg w-80">
     <h2 class="text-center text-2xl font-bold text-primary-foreground mb-6">Register</h2>
+    <% if (typeof error !== 'undefined') { %>
+      <div class="mb-4 p-3 bg-red-500 text-white rounded">
+        <%= error %>
+      </div>
+    <% } %>
     <form action="/register" method="POST">
       <div class="mb-4">
-        <input type="email" name="email" placeholder="Email" class="w-full p-3 rounded bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring" />
+        <input type="email" name="email" placeholder="Email" required class="w-full p-3 rounded bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring" />
       </div>
       <div class="mb-6">
-        <input type="password" name="password" placeholder="Password" class="w-full p-3 rounded bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring" />
+        <input type="password" name="password" placeholder="Password" required class="w-full p-3 rounded bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring" />
       </div>
       <button type="submit" class="w-full p-3 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring">Register</button>
     </form>
