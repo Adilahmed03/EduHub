@@ -85,6 +85,7 @@ EduHub/
 - Available on all pages
 - Helps with queries and recommendations
 
+<<<<<<< HEAD
 ## Results and Discussions
 
 ### 5.2 Implementation Outcomes
@@ -132,6 +133,8 @@ EduHub/
 - Efficient API key handling
 - Robust error handling system
 
+=======
+>>>>>>> e2103efcdf2839b5538f2059cfb5723d1e014995
 ## Contributing
 
 1. Fork the repository
@@ -148,4 +151,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Adil Ahmed - [GitHub](https://github.com/Adilahmed03)
 
+<<<<<<< HEAD
 Project Link: [https://github.com/Adilahmed03/EduHub](https://github.com/Adilahmed03/EduHub)
+=======
+Project Link: [https://github.com/Adilahmed03/EduHub](https://github.com/Adilahmed03/EduHub)
+>>>>>>> e2103efcdf2839b5538f2059cfb5723d1e014995
