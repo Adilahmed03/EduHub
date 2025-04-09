@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Search History - EduHub</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        .history-item {
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+        .history-item:hover {
+            transform: translateX(5px);
+            border-left-color: #4f46e5;
+            background-color: #1f1f1f;
+        }
+        .type-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+        .pdf-badge {
+            background-color: #ef4444;
+            color: white;
+        }
+        .video-badge {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <i class="fas fa-laptop-code cs-icon text-blue-500 text-6xl"></i>
+        <i class="fas fa-brain cs-icon text-green-500 text-6xl"></i>
+        <i class="fas fa-cogs cs-icon text-purple-500 text-6xl"></i>
+        <i class="fas fa-code-branch cs-icon text-red-500 text-6xl"></i>
+        <i class="fas fa-server cs-icon text-yellow-500 text-6xl"></i>
+    </div>
+
+    <div class="flex-grow flex flex-col">
+        <nav class="bg-gray-900 shadow-lg p-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-white">EduHub</div>
+            <div class="flex gap-4">
+                <a href="/search" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200 ease-in-out">
+                    <i class="fas fa-file-pdf mr-2"></i>PDFs
+                </a>
+                <a href="/you" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200 ease-in-out">
+                    <i class="fas fa-video mr-2"></i>Videos
+                </a>
+            </div>
+        </nav>
+
+        <div class="min-h-screen flex flex-col items-center justify-center p-4">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-white">Search History</h1>
+                <p class="text-gray-400 mt-2">Your recent searches and downloads</p>
+            </div>
+
+            <div class="w-full max-w-4xl">
+                <% if (Array.isArray(history) && history.length > 0) { %>
+                    <div class="space-y-3">
+                        <% history.forEach(function(item) { %>
+                            <div class="history-item bg-gray-800 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center mb-2">
+                                            <h3 class="text-white font-medium"><%= item.query %></h3>
+                                            <span class="type-badge <%= item.type === 'pdf' ? 'pdf-badge' : 'video-badge' %>">
+                                                <i class="fas <%= item.type === 'pdf' ? 'fa-file-pdf' : 'fa-video' %> mr-1"></i>
+                                                <%= item.type.toUpperCase() %>
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center text-gray-400 text-sm">
+                                            <i class="fas fa-clock mr-1"></i>
+                                            <span><%= new Date(item.timestamp).toLocaleString() %></span>
+                                            <% if (item.resultCount) { %>
+                                                <span class="mx-2">•</span>
+                                                <i class="fas fa-search mr-1"></i>
+                                                <span><%= item.resultCount %> results</span>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <a href="<%= item.type === 'pdf' ? '/search?q=' + encodeURIComponent(item.query) : '/searchyt?q=' + encodeURIComponent(item.query) %>" 
+                                           class="text-indigo-400 hover:text-indigo-300">
+                                            <i class="fas fa-redo"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    <div class="text-center p-8 bg-gray-800 rounded-lg">
+                        <i class="fas fa-history text-gray-400 text-4xl mb-4"></i>
+                        <p class="text-gray-400">No search history available</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.init({
+            chatflowid: "1c1a9990-f8c0-4217-94f5-e8f799e566d8",
+            apiHost: "http://localhost:3000",
+        })
+    </script>
+</body>
+</html>
